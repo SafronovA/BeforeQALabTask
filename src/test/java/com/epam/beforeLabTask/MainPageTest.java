@@ -51,8 +51,7 @@ public class MainPageTest {
         mainPage.fillPeopleInfo(roomAmount, adultAmount, childrenAmount);
         mainPage.clickApplyButton();
 
-        WebElement pageTitle = driver.findElement(By.xpath("//*[@id=\"right\"]/div[3]/div/div/div[2]/h1"));
-//        WebElement pageTitle = driver.findElement(By.xpath("//*[@id=\"right\"]/div[4]/div/div/div[2]/h1"));
+        WebElement pageTitle = driver.findElement(By.className("sr_header--title"));
         int actualPlacesAmount = util.getFirstNumber(pageTitle.getText());
         Assert.assertTrue(actualPlacesAmount > MIN_AMOUNT_OF_PLACES);
     }
@@ -65,21 +64,21 @@ public class MainPageTest {
         mainPage.fillDate(String.valueOf(arrival), String.valueOf(departure));
         mainPage.clickApplyButton();
 
-        WebElement searchPageTitle = driver.findElement(By.xpath("//*[@id=\"right\"]/div[3]/div/div/div[2]/h1"));
-        int actualPlacesAmount = util.getFirstNumber(searchPageTitle.getText());
+        WebElement pageTitle = driver.findElement(By.className("sr_header--title"));
+        int actualPlacesAmount = util.getFirstNumber(pageTitle.getText());
         Assert.assertTrue(actualPlacesAmount > MIN_AMOUNT_OF_PLACES);
     }
 
     @Test
     public void findPlacesForTwoAdultsNextWeekendTest() {
         int arrival = util.getSaturdayDate();
-        int departure = arrival + 7;
+        int departure = ++arrival;
         mainPage.fillPlace(MILAN);
         mainPage.fillDate(String.valueOf(arrival), String.valueOf(departure));
         mainPage.clickApplyButton();
 
-        WebElement searchPageTitle = driver.findElement(By.xpath("//*[@id=\"right\"]/div[3]/div/div/div[2]/h1"));
-        int actualPlacesAmount = util.getFirstNumber(searchPageTitle.getText());
+        WebElement pageTitle = driver.findElement(By.className("sr_header--title"));
+        int actualPlacesAmount = util.getFirstNumber(pageTitle.getText());
         Assert.assertTrue(actualPlacesAmount > MIN_AMOUNT_OF_PLACES);
     }
 

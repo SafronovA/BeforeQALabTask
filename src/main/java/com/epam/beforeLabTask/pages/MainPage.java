@@ -32,7 +32,8 @@ public class MainPage {
     private WebElement applyButton;
 
     public void fillPlace(String placeStr) {
-        place.sendKeys(placeStr);
+       place.clear();
+       place.sendKeys(placeStr);
     }
 
     public void fillDate(String arrivalDate, String departureDate) {
